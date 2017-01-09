@@ -58,20 +58,20 @@ RedBlack.prototype.addControls =  function()
 {
 	this.insertField = addControlToAlgorithmBar("Text", "");
 	this.insertField.onkeydown = this.returnSubmit(this.insertField,  this.insertCallback.bind(this), 4);
-	this.insertButton = addControlToAlgorithmBar("Button", "Insert");
+	this.insertButton = addControlToAlgorithmBar("Button", "插入");
 	this.insertButton.onclick = this.insertCallback.bind(this);
 	this.deleteField = addControlToAlgorithmBar("Text", "");
 	this.deleteField.onkeydown = this.returnSubmit(this.deleteField,  this.deleteCallback.bind(this), 4);
-	this.deleteButton = addControlToAlgorithmBar("Button", "Delete");
+	this.deleteButton = addControlToAlgorithmBar("Button", "删除");
 	this.deleteButton.onclick = this.deleteCallback.bind(this);
 	this.findField = addControlToAlgorithmBar("Text", "");
 	this.findField.onkeydown = this.returnSubmit(this.findField,  this.findCallback.bind(this), 4);
-	this.findButton = addControlToAlgorithmBar("Button", "Find");
+	this.findButton = addControlToAlgorithmBar("Button", "查找");
 	this.findButton.onclick = this.findCallback.bind(this);
-	this.printButton = addControlToAlgorithmBar("Button", "Print");
+	this.printButton = addControlToAlgorithmBar("Button", "打印");
 	this.printButton.onclick = this.printCallback.bind(this);
 	
-	this.showNullLeaves = addCheckboxToAlgorithmBar("Show Null Leaves");
+	this.showNullLeaves = addCheckboxToAlgorithmBar("显示空叶子节点");
 	this.showNullLeaves.onclick = this.showNullLeavesCallback.bind(this);
 	this.showNullLeaves.checked = false;;
 
@@ -184,14 +184,14 @@ RedBlack.prototype.printTree = function(unused)
 	{
 		this.highlightID = this.nextIndex++;
 		var firstLabel = this.nextIndex;
-		this.cmd("CreateHighlightCircle", this.highlightID, HIGHLIGHT_COLOR, this.treeRoot.x, this.treeRoot.y);
+		this.cmd("创建高亮圈", this.highlightID, HIGHLIGHT_COLOR, this.treeRoot.x, this.treeRoot.y);
 		this.xPosOfNextLabel = FIRST_PRINT_POS_X;
 		this.yPosOfNextLabel = this.first_print_pos_y;
 		this.printTreeRec(this.treeRoot);
-		this.cmd("Delete",this.highlightID);
-		this.cmd("Step");
+		this.cmd("删除",this.highlightID);
+		this.cmd("步骤");
 		for (var i = firstLabel; i < this.nextIndex; i++)
-			this.cmd("Delete", i);
+			this.cmd("删除", i);
 		this.nextIndex = this.highlightID;  /// Reuse objects.  Not necessary.
 	}
 	return this.commands;
@@ -199,13 +199,13 @@ RedBlack.prototype.printTree = function(unused)
 
 RedBlack.prototype.printTreeRec = function(tree) 
 {
-	this.cmd("Step");
+	this.cmd("步骤");
 	if (tree.left != null && !tree.left.phantomLeaf)
 	{
-		this.cmd("Move", this.highlightID, tree.left.x, tree.left.y);
+		this.cmd("移动", this.highlightID, tree.left.x, tree.left.y);
 		this.printTreeRec(tree.left);
-		this.cmd("Move", this.highlightID, tree.x, tree.y);				
-		this.cmd("Step");
+		this.cmd("移动", this.highlightID, tree.x, tree.y);				
+		this.cmd("步骤");
 	}
 	var nextLabelID = this.nextIndex++;
 	this.cmd("CreateLabel", nextLabelID, tree.data, tree.x, tree.y);

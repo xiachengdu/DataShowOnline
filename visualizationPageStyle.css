@@ -45,7 +45,7 @@ body {
 }
 /*头部背景色*/
 .VisualizationMainPage  #header { 
-	background: rgba(33, 107, 255, 0.72);
+	background: #2A6496;
 	color: #ffffff;
 	padding: 0 10px 0 20px; 
   
@@ -109,8 +109,8 @@ body {
 /*底部背景颜色*/
 .VisualizationMainPage #footer { 
 	padding: 0 10px;
-	background: rgba(33, 107, 255, 0.72);
-	color:#ffcc33;
+	background: #2A6496;
+	color: #FFFFFF;
 } 
 .VisualizationMainPage #footer p {
 	margin: 0; 	padding: 10px 0; 
